@@ -37,7 +37,7 @@ class HyperparameterTuning:
         """
         if self.model_name == "KNN":
             # Pour le modèle KNN, suggère le nombre de voisins et initialise le modèle
-            n_neighbors = trial.suggest_int("n_neighbors", 1, 30)
+            n_neighbors = trial.suggest_int("n_neighbors", 1, 20)
             model = BaselineKNN(n_neighbors=n_neighbors)
             
         elif self.model_name == "Neural Network":
@@ -45,9 +45,9 @@ class HyperparameterTuning:
             # Pour le modèle de réseau neuronal, suggère les hyperparamètres et initialise le modèle
             lr = trial.suggest_loguniform("lr", 1e-5, 1e-1)
             epochs = trial.suggest_int("epochs", 10, 100)
-            batch_size = trial.suggest_int("batch_size", 16, 128)
+            batch_size = trial.suggest_int("batch_size", 30, 150)
             hidden_layers = trial.suggest_int("hidden_layers", 1, 3)
-            hidden_sizes = [trial.suggest_int(f"hidden_size_{i}", 32, 256) for i in range(hidden_layers)]
+            hidden_sizes = [trial.suggest_int(f"hidden_size_{i}", 50, 200) for i in range(hidden_layers)]
             patience = trial.suggest_int("patience", 5, 20)
             model = NeuralNetworkModel(input_size=self.X.shape[1], hidden_sizes=hidden_sizes, lr=lr,
                                     epochs=epochs, batch_size=batch_size, patience=patience)
@@ -56,15 +56,15 @@ class HyperparameterTuning:
             
             # Pour le modèle de forêt aléatoire, suggère les hyperparamètres et initialise le modèle
             n_estimators = trial.suggest_int("n_estimators", 50, 200)
-            max_depth = trial.suggest_int("max_depth", 1, 32)
+            max_depth = trial.suggest_int("max_depth", 10, 40)
             model = RandomForestModel(n_estimators=n_estimators, max_depth=max_depth)
             
         elif self.model_name == "Gradient Boosting":
             
             # Pour le modèle de gradient boosting, suggère les hyperparamètres et initialise le modèle
             n_estimators = trial.suggest_int("n_estimators", 50, 200)
-            learning_rate = trial.suggest_loguniform("learning_rate", 1e-4, 1e-1)
-            max_depth = trial.suggest_int("max_depth", 1, 32)
+            learning_rate = trial.suggest_loguniform("learning_rate", 1e-5, 1e-1)
+            max_depth = trial.suggest_int("max_depth", 10, 40)
             model = GradientBoostingModel(n_estimators=n_estimators, learning_rate=learning_rate, max_depth=max_depth)
             
         else:
