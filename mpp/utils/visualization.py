@@ -50,7 +50,7 @@ def plot_feature_correlations(data: pd.DataFrame, target_column: str, output_pat
     plt.show()
 
 
-def plot_results(results: Dict[str, float], output_path: str = "results.png") -> None:
+def plot_results(results: Dict[str, float], title="Performance du Modèle", erreur="Erreur Quadratique Moyenne", output_path: str = "results.png") -> None:
     """
     Trace les résultats de performance (par exemple, l'Erreur Quadratique Moyenne) pour différents modèles.
 
@@ -61,13 +61,16 @@ def plot_results(results: Dict[str, float], output_path: str = "results.png") ->
     Returns:
     - None
     """
-    names = list(results.keys())
-    mse_values = list(results.values())
+    # Trier les résultats par valeur
+    sorted_results = dict(sorted(results.items(), key=lambda item: item[1]))
+
+    names = list(sorted_results.keys())
+    mse_values = list(sorted_results.values())
 
     plt.figure(figsize=(10, 6))
     plt.barh(names, mse_values, color='skyblue')
-    plt.xlabel("Erreur Quadratique Moyenne")
-    plt.title("Performance du Modèle")
+    plt.xlabel(erreur)
+    plt.title(title)
     # Décommentez la ligne ci-dessous pour sauvegarder le graphique dans un fichier
     # plt.savefig(output_path)
     plt.show()

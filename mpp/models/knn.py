@@ -1,5 +1,5 @@
 from sklearn.neighbors import KNeighborsRegressor
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
 import numpy as np
 from typing import Optional
 
@@ -38,7 +38,14 @@ class BaselineKNN:
 
         Returns:
         - float: Erreur quadratique moyenne (MSE) entre les prédictions et les vérités terrain.
+        - float: Racine de l'erreur quadratique moyenne (RMSE)
+        - float: Mean Absolute Error (MAE) 
+        - float: Mean Absolute Percentage Error (MAPE)
         """
         predictions = self.model.predict(X_test)
         mse = mean_squared_error(y_test, predictions)
-        return mse
+        rmse = np.sqrt(mse)
+
+        mae = mean_absolute_error(y_test, predictions)
+        mape = mean_absolute_percentage_error(y_test, predictions)
+        return mse, rmse, mae, mape

@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_absolute_percentage_error
 from tqdm.notebook import tqdm
 from typing import List, Tuple, Union
 import numpy as np
@@ -177,6 +177,9 @@ class NeuralNetworkModel:
 
         Returns:
         - float: Erreur quadratique moyenne (MSE) entre les prédictions et les cibles.
+        - float: Racine de l'erreur quadratique moyenne (RMSE)
+        - float: Mean Absolute Error (MAE) 
+        - float: Mean Absolute Percentage Error (MAPE)
         """
         # Mise à l'échelle des données de test
         X_test = self.scaler.transform(X_test)
@@ -187,7 +190,11 @@ class NeuralNetworkModel:
 
         # Calcul de l'erreur quadratique moyenne (MSE) entre les prédictions et les cibles
         mse = mean_squared_error(y_test, predictions.numpy())
-        return mse
+        rmse = np.sqrt(mse)
+
+        mae = mean_absolute_error(y_test, predictions.numpy())
+        mape = mean_absolute_percentage_error(y_test, predictions.numpy())
+        return mse, rmse, mae, mape
 
 
     def load_model(self, model_path: str):
