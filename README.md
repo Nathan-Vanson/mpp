@@ -1,6 +1,6 @@
 # Molecular Property Prediction (mpp)
 
-* **Supervisors :** Prof. Alexandros Kalousis, Assit. Victor Reyes Martin, Assit. Yoan Boget \\
+* **Supervisors :** Prof. Alexandros Kalousis, Assit. Victor Reyes Martin, Assit. Yoan Boget
 
 * **Student :** VANSON Nathan, PAPA David
 
@@ -24,7 +24,7 @@ cd mpp
 ```
 
 3. **Install the required dependencies**
-> Binary Patern uses Poetry for dependency management. If you don't have Poetry installed, you can install it via pip :
+> mpp uses Poetry for dependency management. If you don't have Poetry installed, you can install it via pip :
 ```bash
 pip install poetry
 ```
@@ -42,4 +42,4 @@ poetry shell
 
 ## Additional Notes
 
-Make sure **Python 3.10.x** is installed on your system as Binary Pattern is compatible with Python 3.10.x versions.
+Make sure **Python 3.10.x** is installed on your system as mpp is compatible with Python 3.10.x versions.
