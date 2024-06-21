@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import numpy as np
 from typing import Dict, List
 
 def plot_correlation_matrix(data: pd.DataFrame, output_path: str = "correlation_matrix.png") -> None:
@@ -122,4 +123,23 @@ def plot_multiple_training_processes(training_losses: Dict[str, List[float]], va
     plt.title("Processus d'Entraînement pour Plusieurs Modèles")
     # Décommentez la ligne ci-dessous pour sauvegarder le graphique dans un fichier
     # plt.savefig(output_path)
+    plt.show()
+
+def plot_prediction(y_test_valeurs: np.ndarray, predictions: pd.Series, title: str ='Valeurs Réelles vs Prédictions') -> None:
+    """
+    Méthode pour tracer les prédictions du modèle par rapport aux valeurs réelles.
+
+    Args:
+    - y_test (pd.Series): Valeurs réelles des données de test.
+    - predictions (np.ndarray): valeurs prédites
+    """
+
+    # Tracé des valeurs réelles vs prédictions
+    plt.figure(figsize=(15, 10))
+    plt.plot(y_test_valeurs, label='Valeurs réelles')
+    plt.plot(predictions, label='Prédictions', alpha=0.7)
+    plt.xlabel('Index')
+    plt.ylabel('Valeurs')
+    plt.title(title)
+    plt.legend()
     plt.show()
