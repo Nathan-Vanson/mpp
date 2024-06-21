@@ -100,31 +100,6 @@ def plot_training_process(training_loss: List[float], validation_loss: List[floa
     # plt.savefig(output_path)
     plt.show()
 
-
-def plot_multiple_training_processes(training_losses: Dict[str, List[float]], validation_losses: Dict[str, List[float]], output_path: str = "training_processes.png") -> None:
-    """
-    Trace la perte d'entraînement et de validation pour plusieurs modèles au fil des epochs.
-
-    Args:
-    - training_losses (Dict[str, List[float]]): Dictionnaire où les clés sont les noms des modèles et les valeurs sont des listes des valeurs de perte d'entraînement par epoch.
-    - validation_losses (Dict[str, List[float]]): Dictionnaire où les clés sont les noms des modèles et les valeurs sont des listes des valeurs de perte de validation par epoch.
-    - output_path (str): Chemin du fichier pour sauvegarder le graphique (par défaut : 'training_processes.png').
-
-    Returns:
-    - None
-    """
-    plt.figure(figsize=(10, 6))
-    for model_name in training_losses:
-        plt.plot(training_losses[model_name], label=f"Perte d'Entraînement {model_name}")
-        plt.plot(validation_losses[model_name], label=f"Perte de Validation {model_name}")
-    plt.xlabel("Epochs")
-    plt.ylabel("Perte")
-    plt.legend()
-    plt.title("Processus d'Entraînement pour Plusieurs Modèles")
-    # Décommentez la ligne ci-dessous pour sauvegarder le graphique dans un fichier
-    # plt.savefig(output_path)
-    plt.show()
-
 def plot_prediction(y_test_valeurs: np.ndarray, predictions: pd.Series, title: str ='Valeurs Réelles vs Prédictions') -> None:
     """
     Méthode pour tracer les prédictions du modèle par rapport aux valeurs réelles.
