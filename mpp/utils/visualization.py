@@ -137,7 +137,7 @@ def plot_prediction(y_test_valeurs: np.ndarray, predictions: pd.Series, title: s
     # Tracé des valeurs réelles vs prédictions
     plt.figure(figsize=(15, 10))
     plt.plot(y_test_valeurs, label='Valeurs réelles')
-    plt.plot(predictions, label='Prédictions', alpha=0.7)
+    plt.plot(predictions, label='Prédictions', color = "red", alpha=0.5)
     plt.xlabel('Index')
     plt.ylabel('Valeurs')
     plt.title(title)

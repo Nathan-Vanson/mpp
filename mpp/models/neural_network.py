@@ -207,16 +207,14 @@ class NeuralNetworkModel:
         self.model.load_state_dict(torch.load(model_path))  # Chargement des poids du modèle
         self.model.eval()  # Passage en mode évaluation du modèle
 
-    def prediction(self, X_test: np.ndarray, y_test: pd.Series):
+    def prediction(self, X_test: np.ndarray):
         """
         Méthode pour faire les prédictions du modèle par rapport aux valeurs réelles.
 
         Args:
         - X_test (np.ndarray): Données de test.
-        - y_test (pd.Series): Valeurs réelles des données de test.
 
         Returns:
-        - y_test.values: valeurs des y tests
         - predictions: valeurs prédites par le model
         """
         # Mise à l'échelle des données de test
@@ -230,4 +228,4 @@ class NeuralNetworkModel:
         # Conversion des prédictions en numpy array
         predictions = predictions.numpy()
 
-        return y_test.values, predictions
+        return predictions

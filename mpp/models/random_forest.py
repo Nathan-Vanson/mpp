@@ -50,3 +50,17 @@ class RandomForestModel:
         mae = mean_absolute_error(y_test, predictions)
         mape = mean_absolute_percentage_error(y_test, predictions)
         return mse, rmse, mae, mape
+    
+    def prediction(self, X_test: np.ndarray):
+        """
+        Méthode pour faire les prédictions du modèle par rapport aux valeurs réelles.
+
+        Args:
+        - X_test (np.ndarray): Données de test.
+
+        Returns:
+        - predictions: valeurs prédites par le model
+        """
+        predictions = self.model.predict(X_test)
+
+        return predictions
