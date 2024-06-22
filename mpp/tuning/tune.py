@@ -64,7 +64,7 @@ class HyperparameterTuning:
             # Pour le modèle de gradient boosting, suggère les hyperparamètres et initialise le modèle
             n_estimators = trial.suggest_int("n_estimators", 50, 200)
             learning_rate = trial.suggest_loguniform("learning_rate", 1e-5, 1e-1)
-            max_depth = trial.suggest_int("max_depth", 10, 40)
+            max_depth = trial.suggest_int("max_depth", 3, 20)
             model = GradientBoostingModel(n_estimators=n_estimators, learning_rate=learning_rate, max_depth=max_depth)
             
         else:
